@@ -1,0 +1,72 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    margin: 0;
+    padding: 0;
+    /* background-image: url(../Assest/background.png); */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    
+    }
+    header{
+        background-color:rgba(26, 174, 194, 0.845);
+        background-size: cover;
+        background-position: center;
+        height: 100px; 
+        width: 100%;   
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        /* min-width:fit-content ; */
+        padding: 0 5%;
+        color: aliceblue;
+        
+    
+    }
+    nav ul{
+        list-style: none;
+        display: flex;
+        gap: 5%;
+        padding: 0% 5px;
+    }
+    nav ul li{
+    font-size: 20px;
+    display: inline-block;
+    /* padding: 0px 10px ; */
+    }
+    nav ul li a{
+        font-family: sans-serif;
+        color: aliceblue;
+        text-decoration: none;
+        padding: 3% 10%;
+        border-radius: 5px;
+    
+    }
+    .pagename{
+        color: rgb(23, 49, 198);
+        font-size: 100px;
+        text-align: center;
+        justify-content: center;
+        /* background-color: rgba(0, 0, 255, 0.296); */
+        border-radius:30px;
+    }
+    .pagename span{
+        color: aliceblue;
+    }
+    footer{
+        background-color:rgba(26, 174, 194, 0.845);;
+        width: 100%;
+        height: 80px;  
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 50%;
+        padding: 0% 5%;
+        text-decoration: none;
+    
+        }
