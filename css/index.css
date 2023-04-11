@@ -3,16 +3,7 @@
     padding: 0;
     box-sizing: border-box;
 }
-body{
-    margin: 0;
-    padding: 0;
-    /* background-image: url(../Assest/background.png); */
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-    
-    }
+
     header{
         background-color:rgba(26, 174, 194, 0.845);
         background-size: cover;
@@ -65,8 +56,70 @@ body{
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-top: 50%;
+        margin-top: 25%;
         padding: 0% 5%;
         text-decoration: none;
     
+        }
+        /*-----------------------------------------------------------------------------------------------------------------------------*/
+        /*-----------------------------------------------------------------------------------------------------------------------------*/
+        /*-----------------------------------------------------------------------------------------------------------------------------*/
+        /*-----------------------------------------------------------------------------------------------------------------------------*/
+        body{
+            margin: 0;
+            padding: 0;
+            background-image: url(../Assest/background.png); 
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            /* justify-content: center; */
+            align-items: center;
+            /* justify-items: center; */
+            }
+        form{
+            border: 2px solid black;
+            border-radius: 15px;
+            width: 125%;
+            height: max-content;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 10px 10px;
+            margin-top: 40%;
+            font-size: 30px;
+            box-shadow: 5px 5px 10px 1px black;
+            background-color: rgba(0, 0, 0, 0.395);
+            color: aliceblue;
+            font-family: 'Alkatra', cursive;
+            font-family: 'Roboto Slab', serif;
+            font-family: 'Teko', sans-serif;
+            font-family: 'Zilla Slab', serif;
+        }
+        form input{
+            width: 50%;
+            height: 50px;
+            border-radius: 15px;
+            padding: 20px 20px;
+        }
+        select{
+            width: 50%;
+            height: 35px;
+            border-radius: 10px;
+            padding: 2px 12px;
+        }
+        #submit{
+        color: rgb(0, 0, 0);
+        background-color: aqua;
+        border: 3px solid rgba(0, 85, 255, 0.425);
+        font-size: 20px;
+        padding: 10px 10px;
+        font-stretch:narrower;
+        margin-bottom: 20px;
+        }
+        form input[type="text"] {
+            text-transform: lowercase;
         }
