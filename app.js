@@ -11,7 +11,7 @@ this.fullName = fullName;
 this.department = department;
 this.level = level;
 this.imageURL = `./Assest/${this.fullName}.png`;
-this.fullName.toLowerCase();
+
 }
 
 // //Render function-----------------------------------------------------------------------------------------
@@ -20,6 +20,11 @@ Employee.prototype.render= function(){
 
     const divEl = document.createElement('div');
     container.appendChild(divEl);
+    divEl.classList.add("card");
+
+    const imgEl = document.createElement('img');
+    divEl.appendChild(imgEl);
+    imgEl.src = this.imageURL;
 
     const h1El = document.createElement('h1');
     h1El.textContent = `Name: ${this.fullName}`;
@@ -35,26 +40,24 @@ Employee.prototype.render= function(){
 
     const levelEl = document.createElement(`h3`);
     levelEl.textContent = `Level: ${this.level}`;
-    levelEl.appendChild(levelEl);
+    divEl.appendChild(levelEl);
 
-    const imgEl = document.createElement('img');
-    divEl.appendChild(imgEl);
-    imgEl.src = this.imageURL;
+    
 
 }
 
 function addNewEmployee(event){
     event.preventDefault();
-    this.fullName.toLowerCase();
-    let fullName = event.target.fullName.value;
-    let employeeID = event.target.employeeID.value;
-    let imgurl = event.target.imgurl.value;
-    let department = event.target.department.value;
+    
+    let fullName = event.target.fname.value;
+    let employeeID = event.target.employeeid.value;
+    let imageURL = event.target.imageURL.value;
+    let department = event.target.dep.value;
     let level = event.target.level.value;
 
-    let newEmployee = new Employee(employeeID,fullName,department,level);
+    let newEmployee = new Employee(employeeID,fullName,department,level, imageURL );
 
-    newEmployee.generateEmployeeID();
+    // newEmployee.generateEmployeeID();
     newEmployee.render()
 }
 console.log(allEmployee);
