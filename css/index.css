@@ -48,9 +48,19 @@
         justify-content: center;
         /* background-color: rgba(0, 0, 255, 0.296); */
         border-radius:30px;
+        font-family: 'Alkatra', cursive;
+        font-family: 'Lobster', cursive;
+        font-family: 'Roboto Slab', serif;
+        font-family: 'Teko', sans-serif;
+        font-family: 'Zilla Slab', serif;
     }
     .pagename span{
         color: aliceblue;
+        font-family: 'Alkatra', cursive;
+        font-family: 'Lobster', cursive;
+        font-family: 'Roboto Slab', serif;
+        font-family: 'Teko', sans-serif;
+        font-family: 'Zilla Slab', serif;
     }
     footer{
         background-color:rgba(26, 174, 194, 0.845);;
@@ -81,6 +91,7 @@
             /* justify-content: center; */
             align-items: center;
             /* justify-items: center; */
+            
             }
         form{
             border: 2px solid black;
@@ -151,7 +162,4 @@
             padding: 1% ;
         }
 
-        #imageURL{
-            box-shadow: 5px 5px 10px 10px black;
-            width: 50px;
-        }
+        
