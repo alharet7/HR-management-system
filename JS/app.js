@@ -1,47 +1,50 @@
 `use strict`;
 //constructor function ----------------------------------------------------------------------
 let allEmployee = []; 
+
 let form = document.getElementById('formid');
 form.addEventListener('submit', addNewEmployee);
 
 
-function Employee(employeeID,fullName,department,level,imageURL){
-this.employeeID = employeeID;
-this.fullName = fullName;
-this.department = department;
-this.level = level;
-this.imageURL = `./Assest/${this.fullName}.png`;
-
+function Employee(fullName,department,level,imageURL){
+    this.employeeId=0;
+    this.fullName = fullName;
+    this.department = department;
+    this.level = level;
+    this.imageURL =imageURL;
+    
 }
 
+Employee.prototype.generateEmpId=function () {
+   
+    return this.employeeId= Math.floor(Math.random() * 9000) + 1000;
+
+}
 // //Render function-----------------------------------------------------------------------------------------
 Employee.prototype.render= function(){
     const container = document.getElementById('container')  // Parent
-
+    
     const divEl = document.createElement('div');
     container.appendChild(divEl);
     divEl.classList.add("card");
-
-    const imgEl = document.createElement('img');
+    
+    const imgEl = new Image(200,200);
     divEl.appendChild(imgEl);
-    imgEl.src = this.imageURL;
-
+    imgEl.src = this.imageURL||  `./Assest/${this.fullName}.png`;
+    
     const h1El = document.createElement('h1');
-    h1El.textContent = `Name: ${this.fullName}`;
+    h1El.textContent = `Name: ${this.fullName}- ID:  ${this.employeeId}`;
     divEl.appendChild(h1El);
-
-    const originalIdEl = document.createElement('h2');
-    originalIdEl.textContent =`ID: ${this.employeeID}`
-    divEl.appendChild(originalIdEl);
-
+    
+    
     const depEl = document.createElement(`h3`);
     depEl.textContent = `Department: ${this.department}`
     divEl.appendChild(depEl);
-
+    
     const levelEl = document.createElement(`h3`);
     levelEl.textContent = `Level: ${this.level}`;
     divEl.appendChild(levelEl);
-
+    
     
 
 }
@@ -50,14 +53,14 @@ function addNewEmployee(event){
     event.preventDefault();
     
     let fullName = event.target.fname.value;
-    let employeeID = event.target.employeeid.value;
+    // let employeeID = event.target.employeeid.value;
     let imageURL = event.target.imageURL.value;
     let department = event.target.dep.value;
     let level = event.target.level.value;
 
-    let newEmployee = new Employee(employeeID,fullName,department,level, imageURL );
+    let newEmployee = new Employee(fullName,department,level, imageURL );
 
-    // newEmployee.generateEmployeeID();
+    newEmployee .generateEmpId();// newEmployee.generateEmployeeID();
     newEmployee.render()
 }
 console.log(allEmployee);
@@ -66,19 +69,6 @@ console.log(allEmployee);
 
 // function Employee() {}
 
-// Employee.prototype.generateEmployeeID = function() {
-//   let id = '';
-//   const characters = '0123456789';
-//   const charactersLength = characters.length;
-  
-//   for (let i = 0; i < 4; i++) {
-//     id += characters.charAt(Math.floor(Math.random() * charactersLength));
-//   }
-  
-//   return id;
-// }
-// const employeeID = this.generateEmployeeID();
-// console.log(employeeID);
 
 
 
