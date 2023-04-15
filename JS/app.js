@@ -1,78 +1,139 @@
 `use strict`;
 //constructor function ----------------------------------------------------------------------
-let allEmployee = []; 
+let allEmployee = [];
 
 let form = document.getElementById('formid');
 form.addEventListener('submit', addNewEmployee);
 
 
-function Employee(fullName,department,level,imageURL){
-    this.employeeId=0;
+function Employee(fullName, department, level, imageURL, salary) {
+    this.employeeId = generateEmpId();
     this.fullName = fullName;
     this.department = department;
     this.level = level;
-    this.imageURL =imageURL;
-    
+    this.imageURL = imageURL;
+    this.salary = salary;
+
+    allEmployee.push(this);
 }
 
-Employee.prototype.generateEmpId=function () {
-   
-    return this.employeeId= Math.floor(Math.random() * 9000) + 1000;
+function generateEmpId() {
+    let i = 0;
+    for (let i = 0; i < allEmployee.length; i++)
 
+        return allEmployee[i].employeeId = Math.floor(Math.random() * 9000) + 1000;
+
+}
+//Calculate salary---------------------------------------------------------------------------------
+function calculateSalary() {
+    let i = 0;
+    for (let i = 0; i < allEmployee.length; i++) {
+
+        if (allEmployee[i].level == "Senior") {
+
+            allEmployee[i].salary = randomNumberForSalary(1500, 2000);//random salary
+            allEmployee[i].salary = allEmployee[i].salary - (allEmployee[i].salary * 0.075);//net salary
+        }
+        if (allEmployee[i].level == "Mid-Senior") {
+
+            allEmployee[i].salary = randomNumberForSalary(1000, 1500);
+            allEmployee[i].salary = allEmployee[i].salary - (allEmployee[i].salary * 0.075);
+        }
+        if (allEmployee[i].level == "Junior") {
+
+            allEmployee[i].salary = randomNumberForSalary(500, 1000);
+            allEmployee[i].salary = allEmployee[i].salary - (allEmployee[i].salary * 0.075);
+        }
+        return allEmployee[i].salary;
+    }
+} console.log(allEmployee.salary);
+
+function randomNumberForSalary(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min);
 }
 // //Render function-----------------------------------------------------------------------------------------
-Employee.prototype.render= function(){
+function render() {
     const container = document.getElementById('container')  // Parent
-    
+
     const divEl = document.createElement('div');
     container.appendChild(divEl);
     divEl.classList.add("card");
-    
-    const imgEl = new Image(200,200);
-    divEl.appendChild(imgEl);
-    imgEl.src = this.imageURL||  `./Assest/${this.fullName}.png`;
-    
-    const h1El = document.createElement('h1');
-    h1El.textContent = `Name: ${this.fullName}- ID:  ${this.employeeId}`;
-    divEl.appendChild(h1El);
-    
-    
-    const depEl = document.createElement(`h3`);
-    depEl.textContent = `Department: ${this.department}`
-    divEl.appendChild(depEl);
-    
-    const levelEl = document.createElement(`h3`);
-    levelEl.textContent = `Level: ${this.level}`;
-    divEl.appendChild(levelEl);
-    
-    
+
+    getEmployee()
+
+    if (allEmployee == null) {
+        allEmployee = [];
+    }
+
+    for (let i = 0; i < allEmployee.length; i++) {
+
+        const imgEl = new Image(200, 200);
+        divEl.appendChild(imgEl);
+        imgEl.src = allEmployee[i].imageURL || `./Assest/${allEmployee[i].fullName}.png`;
+
+        const h1El = document.createElement('h1');
+        h1El.textContent = `Name: ${allEmployee[i].fullName}- ID:  ${generateEmpId(allEmployee[i].employeeId)}`;
+        divEl.appendChild(h1El);
+
+
+        const depEl = document.createElement(`h3`);
+        depEl.textContent = `Department: ${allEmployee[i].department}`
+        divEl.appendChild(depEl);
+
+        const levelEl = document.createElement(`h3`);
+        levelEl.textContent = `Level: ${allEmployee[i].level}`;
+        divEl.appendChild(levelEl);
+
+        const pE1 = document.createElement('p');
+        pE1.textContent = `Salary:  ${calculateSalary(allEmployee[i].salary)}`;
+        divEl.appendChild(pE1);
+    }
+
 
 }
 
-function addNewEmployee(event){
-    event.preventDefault();
-    
+///Events-------------------------------------------------------------------------
+function addNewEmployee(event) {
+    // event.preventDefault();
+
     let fullName = event.target.fname.value;
-    // let employeeID = event.target.employeeid.value;
     let imageURL = event.target.imageURL.value;
     let department = event.target.dep.value;
     let level = event.target.level.value;
 
-    let newEmployee = new Employee(fullName,department,level, imageURL );
+    let newEmployee = new Employee(fullName, department, level, imageURL);
 
-    newEmployee .generateEmpId();// newEmployee.generateEmployeeID();
-    newEmployee.render()
+
+    let jsonArr = JSON.stringify(allEmployee);
+    localStorage.setItem('allEmployee', jsonArr);
+
+    console.log('allEmployee', allEmployee); //just for tseting
+    console.log('JSON Array', jsonArr);      //just for tseting
+
+    newEmployee.calculateSalary();
+    newEmployee.generateEmpId();
+    // newEmployee.render();
+
 }
+
+function getEmployee() {
+    let jsonArr = localStorage.getItem('allEmployee');
+    let dataFromStorage = JSON.parse(jsonArr);
+    console.log(dataFromStorage);
+    allEmployee = dataFromStorage;
+}
+
+getEmployee();
+render();
+calculateSalary();
+generateEmpId();
+
+console.log(generateEmpId());
 console.log(allEmployee);
-
-
-
+console.log(calculateSalary());
 // function Employee() {}
-
-
-
-
-
 // //thats for me -----------------------------------------------------------------------------------
 // gazi.render();
 // lana.render();
