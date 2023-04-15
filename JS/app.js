@@ -6,13 +6,13 @@ let form = document.getElementById('formid');
 form.addEventListener('submit', addNewEmployee);
 
 
-function Employee(fullName, department, level, imageURL, salary) {
+function Employee(fullName, department, level, imageURL, ) {
     this.employeeId = generateEmpId();
     this.fullName = fullName;
     this.department = department;
     this.level = level;
     this.imageURL = imageURL;
-    this.salary = salary;
+    this.salary = calculateSalary();
 
     allEmployee.push(this);
 }
@@ -49,10 +49,12 @@ function calculateSalary() {
 } console.log(allEmployee.salary);
 
 function randomNumberForSalary(min, max) {
+    let i = 0;
+    for (let i = 0; i < allEmployee.length; i++) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1) + min);
-}
+    }}
 // //Render function-----------------------------------------------------------------------------------------
 function render() {
     const container = document.getElementById('container')  // Parent
@@ -115,7 +117,8 @@ function addNewEmployee(event) {
     newEmployee.calculateSalary();
     newEmployee.generateEmpId();
     // newEmployee.render();
-
+    calculateSalary();
+    generateEmpId();
 }
 
 function getEmployee() {
